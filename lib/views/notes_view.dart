@@ -5,6 +5,30 @@ class NotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Notes",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.black38,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: IconButton(
+              color: Colors.white,
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

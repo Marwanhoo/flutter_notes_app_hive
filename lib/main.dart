@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       themeMode: ThemeMode.dark,
-      home: NotesView(),
+      home: const NotesView(),
     );
   }
 }
