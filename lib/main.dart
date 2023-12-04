@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_notes_app_hive/views/notes_view.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -20,6 +19,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
+        fontFamily: "Poppins",
       ),
       themeMode: ThemeMode.dark,
       home: const NotesView(),
