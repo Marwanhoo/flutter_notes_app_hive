@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_notes_app_hive/views/notes_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-void main() async{
+
+String nameOpenBox = "notes_box";
+
+void main() async {
   await Hive.initFlutter();
-  await Hive.openBox("notes_box");
+  await Hive.openBox(nameOpenBox);
   runApp(const MyApp());
 }
 
@@ -28,4 +31,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
