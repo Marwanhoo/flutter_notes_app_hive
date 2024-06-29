@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_notes_app_hive/constants/constants.dart';
 import 'package:flutter_notes_app_hive/models/note_model.dart';
 import 'package:flutter_notes_app_hive/views/notes_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-String nameOpenBox = "notes_box";
 
 void main() async {
   await Hive.initFlutter();
