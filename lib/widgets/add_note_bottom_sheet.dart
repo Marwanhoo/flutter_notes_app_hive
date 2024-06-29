@@ -1,71 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_notes_app_hive/widgets/custom_button.dart';
-import 'package:flutter_notes_app_hive/widgets/custom_text_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_notes_app_hive/cubits/add_note/add_note_cubit.dart';
+import 'package:flutter_notes_app_hive/widgets/add_note_form.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  const Padding(
-      padding: EdgeInsets.all(16.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
-        child: AddNoteForm(),
+        child: BlocConsumer<AddNoteCubit, AddNoteState>(
+          listener: (context, state) {
+            if (state is AddNoteFailure) {
+              debugPrint("Error ${state.errorMessage}");
+            }
+            if (state is AddNoteSuccess) {
+              Navigator.of(context).pop();
+            }
+          },
+          builder: (context, state) {
+            if (state is AddNoteLoading) {
+              return const CircularProgressIndicator();
+            } else {
+              return const AddNoteForm();
+            }
+          },
+        ),
       ),
     );
   }
 }
-
-class AddNoteForm extends StatefulWidget {
-  const AddNoteForm({
-    super.key,
-  });
-
-  @override
-  State<AddNoteForm> createState() => _AddNoteFormState();
-}
-
-class _AddNoteFormState extends State<AddNoteForm> {
-  GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-  String? title,subtitle;
-  @override
-  Widget build(BuildContext context) {
-
-    return Form(
-      key: formKey,
-      autovalidateMode: autoValidateMode,
-      child:  Column(
-        children: [
-          CustomTextField(
-            onSaved: (value){
-              title = value;
-            },
-            hintText: "Title",
-          ),
-          const SizedBox(height: 10),
-          CustomTextField(
-            onSaved: (value){
-              subtitle = value;
-            },
-            hintText: "Note",
-            maxLines: 4,
-          ),
-          const SizedBox(height: 10),
-           CustomButton(
-            onTap: (){
-              if(formKey.currentState!.validate()){
-                formKey.currentState!.save();
-              }else{
-                // when data is null
-                autoValidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
