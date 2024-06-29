@@ -10,7 +10,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(nameOpenBox);
+  await Hive.openBox<NoteModel>(nameOpenBox);
   Hive.registerAdapter(NoteModelAdapter());
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());

@@ -21,11 +21,13 @@ class AddNoteBottomSheet extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            if (state is AddNoteLoading) {
-              return const CircularProgressIndicator();
-            } else {
+            // if (state is AddNoteLoading) {
+            //   return const CircularProgressIndicator();
+            // } else {
+            //   return const AddNoteForm();
+            // }
+
               return const AddNoteForm();
-            }
           },
         ),
       ),
