@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_notes_app_hive/models/note_model.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  const NoteItem({super.key, required this.noteModel});
 
+  final NoteModel noteModel;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
+        //Color
         color: Colors.grey,
         borderRadius: BorderRadius.circular(10),
       ),
@@ -15,20 +18,20 @@ class NoteItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           ListTile(
-            title: const Padding(
-              padding: EdgeInsets.only(bottom: 10),
+            title:  Padding(
+              padding: const EdgeInsets.only(bottom: 10),
               child: Text(
-                "Flutter tips",
-                style: TextStyle(
+                noteModel.title,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            subtitle: const Text(
-              "this is subtitle",
-              style: TextStyle(
+            subtitle:  Text(
+              noteModel.subtitle,
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
               ),
@@ -42,9 +45,9 @@ class NoteItem extends StatelessWidget {
             ),
             contentPadding: EdgeInsets.zero,
           ),
-          const Text(
-            "May21 , 2022",
-            style: TextStyle(
+           Text(
+            noteModel.date,
+            style: const TextStyle(
               color: Colors.black,
             ),
           ),
