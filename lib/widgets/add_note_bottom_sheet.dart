@@ -17,19 +17,21 @@ class AddNoteBottomSheet extends StatelessWidget {
             listener: (context, state) {
               if (state is AddNoteFailure) {
                 debugPrint("Error ${state.errorMessage}");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.errorMessage),
+                  ),
+                );
               }
               if (state is AddNoteSuccess) {
                 Navigator.of(context).pop();
               }
             },
             builder: (context, state) {
-              // if (state is AddNoteLoading) {
-              //   return const CircularProgressIndicator();
-              // } else {
-              //   return const AddNoteForm();
-              // }
-
-              return const AddNoteForm();
+              return AbsorbPointer(
+                absorbing: state is AddNoteLoading ?  true : false,
+                child: const AddNoteForm(),
+              );
             },
           ),
         ),
