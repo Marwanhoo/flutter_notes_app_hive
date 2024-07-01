@@ -5,16 +5,21 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.hintText,
     this.maxLines = 1,
-    this.onSaved,
+    this.onSaved, this.onChanged,
+    this.readOnly = false, this.controller,
   });
 
   final String hintText;
   final int maxLines;
   final void Function(String?)? onSaved;
+  final void Function(String)? onChanged;
+  final bool readOnly;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       onSaved: onSaved,
       // cursorColor: Colors.white,
       decoration: InputDecoration(
@@ -31,6 +36,8 @@ class CustomTextField extends StatelessWidget {
           return null;
         }
       },
+      onChanged:onChanged,
+      readOnly: readOnly,
     );
   }
 
