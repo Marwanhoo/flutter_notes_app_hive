@@ -15,5 +15,6 @@ class NotesCubit extends Cubit<NotesState> {
       // load all notes
       notes = notesBox.values.toList();
       print("Notes $notes");
+      emit(NotesSuccess());
   }
 }
