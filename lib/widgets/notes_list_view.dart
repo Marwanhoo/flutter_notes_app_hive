@@ -12,6 +12,32 @@ class NotesListView extends StatelessWidget {
     return BlocBuilder<NotesCubit, NotesState>(
       builder: (context, state) {
         List<NoteModel> notes = BlocProvider.of<NotesCubit>(context).notes ?? [];
+
+        if (notes.isEmpty) {
+          return const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "No Notes Available",
+                  style: TextStyle(fontSize: 18, color: Colors.grey),
+                ),
+                SizedBox(height: 10), // Add some space between the text and the icon
+                Icon(
+                  Icons.add,
+                   size: 40,
+                  color: Colors.grey,
+                ),
+                SizedBox(height: 10), // Add some space between the icon and the additional text
+                Text(
+                  textAlign: TextAlign.center,
+                  "Create your first note by clicking the add button",
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+              ],
+            ),
+          );
+        }
         return ListView.separated(
           itemBuilder: (context, index) {
             return NoteItem(

@@ -14,3 +14,6 @@ class AddNoteFailure extends AddNoteState {
 
   AddNoteFailure(this.errorMessage);
 }
+
+
+class ChangeItemState extends AddNoteState{}

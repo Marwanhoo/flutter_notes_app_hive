@@ -30,8 +30,7 @@ class NoteItem extends StatelessWidget {
               bottom: 16,
             ),
             decoration: BoxDecoration(
-              //Color
-              color: Colors.grey,
+              color: Color(noteModel.color),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -76,7 +75,7 @@ class NoteItem extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
-                        fixedSize: Size(125, 0),
+                        fixedSize: const Size(125, 0),
                       ),
                         onPressed: () {
                         noteModel.delete();
@@ -103,7 +102,7 @@ class NoteItem extends StatelessWidget {
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
-              fixedSize: Size(125, 0),
+              fixedSize: const Size(125, 0),
             ),
             onPressed: () {
               Navigator.of(context).push(
